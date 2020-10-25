@@ -1,6 +1,6 @@
-import {createAction, createReducer, createSlice} from "@reduxjs/toolkit"
+import {createAction, createSlice, Draft, PayloadAction} from "@reduxjs/toolkit"
 
-const initialState={
+const initialUserState={
 
         userId: null as number | null,
         email: null as string | null,
@@ -8,21 +8,39 @@ const initialState={
         isAuth: false,
         captchaUrl: null as string | null
 }
-export type AuthReducerT=typeof initialState
 
-const SET_USER_DATA = 'auth/SET_USER_DATA';
-const GET_USER_DATA = 'auth/GET_USER_DATA';
-const GET_CAPTCHA_URL_SUCCESS = 'auth/GET_CAPTCHA_URL_SUCCESS';
+export interface AuthUserI{
+        userId: number | null | undefined,
+        email: string | null | undefined,
+        login: string | null | undefined,
+        isAuth?: boolean,
+        captchaUrl?: string | null | undefined
+}
+export interface AuthReducerStateI{
+        loading: boolean,
+        user:AuthUserI
+}
+export const GET_USER_DATA = 'auth/GET_USER_DATA';
 
-const setUserDataAction=createAction<AuthReducerT>(SET_USER_DATA)
+
 export const getUserDataAction=createAction(GET_USER_DATA)
 
 export const authSlice = createSlice({
-        name: 'authReducer',
-        initialState:initialState,
+        name: 'auth',
+        initialState: {
+                loading:false,
+                user:initialUserState
+        },
         reducers:{
-                setUserDataAction(state, action){
-                        return({...state, ...action.payload})
+                setLoadingUserAction(state){
+                  state.loading=true
+                },
+                setLoadedUserAction(state){
+                  state.loading=false
+                },
+                setUserDataAction(state:Draft<AuthReducerStateI>, action:PayloadAction<AuthUserI>){
+                        state.user=action.payload
                 }
         }
 })
+export const {setUserDataAction, setLoadedUserAction, setLoadingUserAction}=authSlice.actions
