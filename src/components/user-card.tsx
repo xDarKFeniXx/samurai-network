@@ -9,7 +9,7 @@ import {UserType} from "../store/users/users-reducer";
 
 const useStyles = makeStyles({
     root: {
-        minWidth: 275,
+        width: 275,
     },
     bullet: {
         display: 'inline-block',
@@ -26,7 +26,6 @@ const useStyles = makeStyles({
 
 // @ts-ignore
 export const UserCard=({user})=> {
-    console.log(user)
     const classes = useStyles();
     const bull = <span className={classes.bullet}>•</span>;
 

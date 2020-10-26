@@ -22,14 +22,14 @@ export type PhotosType = {
     large: string | null
 }
 export const GET_USERS='users/GET_USERS'
-export const getUsersAction=createAction<{page: number,pageSize: number}>(GET_USERS)
+export const getUsersAction=createAction<{page:number, pageSize:number}>(GET_USERS)
 
 export const usersSlice = createSlice({
     name: 'users',
     initialState: initialState,
     reducers: {
         setUsersAction(state: Draft<UsersStateT>, action: PayloadAction<Array<UserType>>) {
-            state.users = [...state.users, ...action.payload]
+            state.users =action.payload
         },
         setCurrentPageAction(state: Draft<UsersStateT>, action: PayloadAction<number>) {
             state.currentPage = action.payload

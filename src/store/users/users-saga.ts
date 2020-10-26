@@ -4,9 +4,10 @@ import {showError} from "../app/app-reducer";
 import {usersAPI} from "../../api/users-api";
 
 
-function* requestUsers(page: number,pageSize: number){
-
+function* requestUsers(action:{payload:{page:number, pageSize:number}}){
+    const {page, pageSize}=action.payload
     yield put(toggleIsFetchingAction(true))
+
     yield put(setCurrentPageAction(page))
     try{
         const data=yield call(usersAPI.getUsers, page, pageSize)
