@@ -1,4 +1,5 @@
 import axios from "axios";
+import {UserType} from "../store/users/users-reducer";
 
 export const instance = axios.create({
     withCredentials: true,
@@ -18,7 +19,7 @@ export enum ResultCodeForCapcthaEnum {
 }
 
 export type GetItemsType = {
-    items: Array<any> //TODO
+    items: Array<UserType>
     totalCount: number
     error: string | null
 }

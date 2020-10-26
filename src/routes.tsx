@@ -12,6 +12,7 @@ import {NavBar} from "./components/nav-bar/nav-bar";
 import {makeStyles} from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import {StickyFooter} from "./components/footer/footer";
+import {DialogsPage} from "./pages/dialogs-page/dialogs-page";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -58,6 +59,9 @@ export const useRoutes = () => {
             </Route>
             <Route path='/login'>
                 <LoginPage/>
+            </Route>
+            <Route path='/dialogs'>
+                <DialogsPage/>
             </Route>
             <Route path='/registration'>
                 <RegistrationPage/>

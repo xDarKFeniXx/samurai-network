@@ -11,6 +11,7 @@ import GroupIcon from '@material-ui/icons/Group';
 import ListItemText from '@material-ui/core/ListItemText'
 import Button from '@material-ui/core/Button';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import EmailIcon from '@material-ui/icons/Email';
 import {logoutAction} from "../../store/auth/auth-reducer";
 import {useDispatch} from "react-redux";
 
@@ -61,6 +62,16 @@ export const NavBar = () => {
                             <AccountBoxIcon />
                         </ListItemIcon>
                         <ListItemText primary="Профиль" />
+                    </ListItem>
+                    <ListItem
+                        button
+                        key="dialogs"
+                        component={NavLink} to="/dialogs"
+                    >
+                        <ListItemIcon>
+                            <EmailIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Dialogs" />
                     </ListItem>
                     <ListItem
                         button
