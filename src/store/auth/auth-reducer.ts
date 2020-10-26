@@ -21,9 +21,21 @@ export interface AuthReducerStateI{
         user:AuthUserI
 }
 export const GET_USER_DATA = 'auth/GET_USER_DATA';
+export const LOGIN = 'auth/LOGIN';
+export const LOGOUT = 'auth/LOGOUT';
+export const GET_CAPTCHA_URL = 'auth/GET_CAPTCHA_URL';
 
+export type LoginFormValuesType={
+        captcha: string
+        rememberMe: boolean
+        password: string
+        email: string
+}
 
 export const getUserDataAction=createAction(GET_USER_DATA)
+export const loginAction=createAction<LoginFormValuesType>(LOGIN)
+export const logoutAction=createAction(LOGOUT)
+export const getCaptchaAction=createAction(GET_CAPTCHA_URL)
 
 export const authSlice = createSlice({
         name: 'auth',
@@ -40,7 +52,10 @@ export const authSlice = createSlice({
                 },
                 setUserDataAction(state:Draft<AuthReducerStateI>, action:PayloadAction<AuthUserI>){
                         state.user=action.payload
+                },
+                setCaptchaUrl(state:Draft<AuthReducerStateI>, action:PayloadAction<string>){
+                        state.user.captchaUrl=action.payload
                 }
         }
 })
-export const {setUserDataAction, setLoadedUserAction, setLoadingUserAction}=authSlice.actions
+export const {setUserDataAction, setLoadedUserAction, setLoadingUserAction, setCaptchaUrl}=authSlice.actions
