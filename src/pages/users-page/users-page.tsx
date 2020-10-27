@@ -3,14 +3,21 @@ import {useDispatch, useSelector} from "react-redux";
 import {usersStateSelector} from "../../store/users/users-selectors";
 import {getUsersAction, setCurrentPageAction} from "../../store/users/users-reducer";
 import Pagination from '@material-ui/lab/Pagination';
-import {UserCard} from "../../components/user-card";
+import {UserCard} from "../../components/user-card/user-card";
 import {makeStyles} from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import {UserCardSkeleton} from "../../components/user-card/user-card-skeleton";
 
 const useStyles = makeStyles((theme) => ({
     root:{},
-    pagination:{},
+    pagination:{
+        paddingTop: 10,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
     userContainer:{
+        paddingTop: 10,
         display:'grid',
         gridTemplateColumns: '1fr 1fr 1fr',
         gridGap: theme.spacing(3),
@@ -32,7 +39,19 @@ export const UsersPage:React.FC = () => {
     const users=usersState.users.map(user=><UserCard key={ user.id} user={user}/>)
     if(usersState.isFetching){
         return(
-            <div>loading</div>
+            <div className={classes.root}>
+                <Pagination className={classes.pagination}
+                            count={10}
+                            page={1}
+                            variant="outlined" shape="rounded" />
+                <Container className={classes.userContainer}>
+                    {new Array(3).fill(0).map((user, index)=> {
+                        return(
+                        <UserCardSkeleton key={index}/>
+                        )
+                    })}
+                </Container>
+            </div>
         )
     }
     return (

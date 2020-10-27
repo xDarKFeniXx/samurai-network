@@ -71,7 +71,7 @@ export const NavBar = () => {
                         <ListItemIcon>
                             <EmailIcon />
                         </ListItemIcon>
-                        <ListItemText primary="Dialogs" />
+                        <ListItemText primary="Сообщения" />
                     </ListItem>
                     <ListItem
                         button

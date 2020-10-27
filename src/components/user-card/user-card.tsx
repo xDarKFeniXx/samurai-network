@@ -5,8 +5,10 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import {UserType} from "../store/users/users-reducer";
-
+import {UserType} from "../../store/users/users-reducer";
+import CardHeader from '@material-ui/core/CardHeader';
+import Avatar from '@material-ui/core/Avatar';
+import defaultAvatar from '../../assets/images/user.png'
 const useStyles = makeStyles({
     root: {
         width: 275,
@@ -23,14 +25,25 @@ const useStyles = makeStyles({
         marginBottom: 12,
     },
 });
+type PropsT={
+    user:UserType
+}
 
-// @ts-ignore
-export const UserCard=({user})=> {
+export const UserCard:React.FC<PropsT>=({user})=> {
     const classes = useStyles();
     const bull = <span className={classes.bullet}>•</span>;
 
     return (
         <Card className={classes.root} variant="outlined">
+            <CardHeader
+                avatar={
+                    <Avatar aria-label="recipe" src={user.photos.small?user.photos.small:defaultAvatar}/>
+
+                }
+
+                title={user.name}
+                subheader={user.followed? "followed":"not followed"}
+            />
             <CardContent>
                 <Typography className={classes.title} color="textSecondary" gutterBottom>
                     {user.name}

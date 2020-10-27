@@ -49,6 +49,9 @@ export const useRoutes = () => {
             <Route path='/users/:id?'>
                 <UsersPage/>
             </Route>
+            <Route path='/dialogs'>
+                <DialogsPage/>
+            </Route>
             <Route path='*'>
                 <NotFoundPage/>
             </Route>
@@ -60,9 +63,7 @@ export const useRoutes = () => {
             <Route path='/login'>
                 <LoginPage/>
             </Route>
-            <Route path='/dialogs'>
-                <DialogsPage/>
-            </Route>
+
             <Route path='/registration'>
                 <RegistrationPage/>
             </Route>
